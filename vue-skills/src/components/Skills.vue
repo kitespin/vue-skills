@@ -1,11 +1,18 @@
 <template>
     <div class="hello">
         <div class="holder">
+            <!-- prevents the page from reloading and calls the method addSkill on submission -->
             <form @submit.prevent="addSkill">
+                <!-- v-model allows 2 way data binding allows communication between template and logic and viceversa -->
                 <input type="text" placeholder="Enter a skill you have..." v-model="skill">
+                
+               <!-- <input type="checkbox" id="checkbox" v-model="checked"> -->
+               
             </form>
             <ul>
-                <li v-for="(data,index) in skills" :key="index"> {{ data.skill}}</li>
+                <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bouceOutDown">
+                    <li v-for="data in skills" :key="data.skill"> {{ data.skill }}</li>
+                </transition-group>
             </ul>
 
             <p>These are the skills that you possess.</p>
@@ -18,6 +25,7 @@ export default {
     name: "Skills",
     data() {
         return {
+            //checked: false,
             skill: "",
             skills: [
                 {"skill": "vue.js"},
@@ -28,7 +36,9 @@ export default {
     methods: {
         addSkill(){
             this.skills.push({skill: this.skill})
+            //emptys out the skill once submitted
             this.skill = "";
+            //console.log('This checkbox value is : '+this.checked);
         }
     }
 }
@@ -36,6 +46,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
 
 .holder{
     background: #fff;
