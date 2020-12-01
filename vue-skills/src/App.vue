@@ -50,6 +50,6 @@ nav a {
   border-radius: 3px;
   color: rgb(0, 110, 255);
   font-weight: bold;
-  margin-right: 15px;
+  margin-right: 25px;
 }
 </style>
